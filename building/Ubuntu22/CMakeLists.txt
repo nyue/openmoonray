@@ -13,6 +13,17 @@ include(ExternalProject)
 
 set(InstallRoot /opt/MoonRay/installs CACHE FILEPATH "Install root for dependencies")
 
+ExternalProject_Add(TBB
+  URL https://github.com/uxlfoundation/oneTBB/releases/download/v2020.3/tbb-2020.3-lin.tgz
+  URL_HASH SHA256=bb8cddd0277605d3ee7f4e19b138c983f298d69fcbb585385b59ef7239d5ef83
+  DOWNLOAD_DIR ${CMAKE_BINARY_DIR}/downloads
+  SOURCE_DIR ${InstallRoot}/tbb-2020.3
+  CONFIGURE_COMMAND ""  # Skip configure step
+  BUILD_COMMAND ""      # Skip build step
+  INSTALL_COMMAND ""    # Skip install step
+  )
+set(CHAIN TBB)
+
 ExternalProject_Add(JsonCpp
     GIT_REPOSITORY https://github.com/open-source-parsers/jsoncpp.git
     GIT_TAG 5defb4ed1a4293b8e2bf641e16b156fb9de498cc # 1.9.5
