@@ -98,7 +98,7 @@ ExternalProject_Add(embree
     -DEMBREE_MAX_ISA=AVX512
     -DEMBREE_TUTORIALS=OFF
     -DBUILD_SHARED_LIBS=ON
-	-DTBB_DIR=/home/nyue/systems/tbb/2020.3/tbb/cmake
+	-DTBB_DIR=${InstallRoot}/tbb-2020.3/tbb/cmake
     DEPENDS ${CHAIN}
 	)
 set(CHAIN embree)
@@ -142,7 +142,7 @@ ExternalProject_Add(OpenImageDenoise
     CMAKE_ARGS
     -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
     -DISPC_EXECUTABLE=<INSTALL_DIR>/bin/ispc
-	-DTBB_DIR=/home/nyue/systems/tbb/2020.3/tbb/cmake
+	-DTBB_DIR=${InstallRoot}/tbb-2020.3/tbb/cmake
     -DOIDN_APPS=OFF
     DEPENDS ${CHAIN}
 	)
@@ -161,9 +161,9 @@ if(NOT NO_USD)
         -DPXR_USE_PYTHON_3=ON
         -DPYTHON_INCLUDE_DIRS=/usr/include
         -DTBB_USE_DEBUG_BUILD=OFF
-        -DTBB_DIR=/home/nyue/systems/tbb/2020.3/tbb/cmake
-		-DTBB_LIBRARY=/home/nyue/systems/tbb/2020.3/tbb/lib/intel64/gcc4.8
-		-DTBB_INCLUDE_DIRS=/home/nyue/systems/tbb/2020.3/tbb/include
+        -DTBB_DIR=${InstallRoot}/tbb-2020.3/tbb/cmake
+		-DTBB_LIBRARY=${InstallRoot}/tbb-2020.3/tbb/lib/intel64/gcc4.8
+		-DTBB_INCLUDE_DIRS=${InstallRoot}/tbb-2020.3/tbb/include
         -DPXR_BUILD_TESTS=OFF
         -DPXR_BUILD_EXAMPLES=OFF
         -DPXR_BUILD_TUTORIALS=OFF
