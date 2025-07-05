@@ -148,6 +148,19 @@ ExternalProject_Add(OpenImageDenoise
 	)
 set(CHAIN OpenImageDenoise)
 
+ExternalProject_Add(OpenVDB
+    URL https://github.com/AcademySoftwareFoundation/openvdb/archive/refs/tags/v9.1.0.tar.gz
+    INSTALL_DIR ${InstallRoot}
+    CMAKE_ARGS
+    -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR>
+	-DOPENVDB_CORE_STATIC=OFF
+	-DTBB_ROOT=${InstallRoot}/tbb-2020.3/tbb
+	-DTBB_LIBRARYDIR=${InstallRoot}/tbb-2020.3/tbb/lib/intel64/gcc4.8
+	-DTBB_INCLUDEDIR=${InstallRoot}/tbb-2020.3/tbb/include
+    DEPENDS ${CHAIN}
+	)
+set(CHAIN OpenVDB)
+
 if(NOT NO_USD)
     ExternalProject_Add(USD
         GIT_REPOSITORY https://github.com/PixarAnimationStudios/USD
@@ -169,8 +182,8 @@ if(NOT NO_USD)
         -DPXR_BUILD_TUTORIALS=OFF
         -DPXR_BUILD_USD_TOOLS=OFF
         -DPXR_ENABLE_PTEX_SUPPORT=OFF
-        -DPXR_ENABLE_OPENVDB_SUPPORT=OFF
-        -DPXR_BUILD_USDVIEW=OFF
+        -DPXR_ENABLE_OPENVDB_SUPPORT=ON
+        -DPXR_BUILD_USDVIEW=ON
         -DTBB_SUPPRESS_DEPRECATED_MESSAGES=1
         DEPENDS ${CHAIN}
 		)
